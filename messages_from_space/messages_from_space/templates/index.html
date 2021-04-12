@@ -38,7 +38,7 @@ function noDelaySetInterval(func, interval) {
   methods: {
     markRead: function (id) {
       axios
-            .get('{% fullurl 'mark_read' %}?id=' + id);
+            .get('/mark_read/${id}');
       reqJson.pk[id].fields.read = True;
       }
     },
