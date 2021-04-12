@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "IS-test"
+version = "0.1.0"
+description = "test work for it-solution using django+vue+bootstrap"
+authors = ["andrejrabinov <andryabinov@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^3.2"
+django-fullurl = "^1.1"
+
+[tool.poetry.dev-dependencies]
+pep8 = "^1.7.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
