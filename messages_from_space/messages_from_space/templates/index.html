@@ -13,49 +13,20 @@
 </head>
 <body>
     <div id="messagesFromSpace" class="container">
-    <div v-if="reqJson.length > 0">
-        <message-from v-for="item in reqJson":key="item.pk" class="card">
-            <div class="card-body"><h3 class="card-title">[[ item.pk ]]</h3><p class="card-text">[[ item.fields.text ]]</p><button v-on:click="markRead([[ item.pk ]]); items.fields.read = true" type="button" class="btn btn-primary">mark read</button><div v-if="item.fields.read = False"> jkj</div></div>
-        </message-from>
+    <div v-if="messages.length > 0">
+        <msg v-for="message in messages"
+             v-bind:id="message.id"
+             v-bind:text="message.text"
+             v-bind:read="message.read"
+             class="card">
+
+        </msg>
     </div>
-        <div v-else class="container"><h2 class="title centred">EMPTY</h2></div>
+    <div v-else class="container"><h2 class="title centred">EMPTY</h2></div>
     </div>
 
 
 
 </body>
-<script>
-    var last_id = 0;
-function noDelaySetInterval(func, interval) {
-      func();
-      return setInterval(func, interval);
-      };
-
-
-  var app = new Vue({
-  el: '#messagesFromSpace',
-  delimiters: ["[[", "]]"],
-  methods: {
-    markRead: function (id) {
-      axios
-            .get('/mark_read/${id}');
-      reqJson.pk[id].fields.read = True;
-      }
-    },
-  data () {
-    return {
-      reqJson: []}
-  },
-  mounted () {
-    noDelaySetInterval(() => {
-            axios
-            .get('{% fullurl 'get_messages' %}?last_id=' + last_id)
-            .then(response => {
-                this.reqJson = response.data,
-                last_id = response.data['0'].pk
-            })
-        }, 10000)
-    }
-  })
-</script>
+<script src="{% static 'script.js' %}"></script>
 </html>
