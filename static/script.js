@@ -1,6 +1,3 @@
-var last_id = 0;
-var x= 0;
-
 function noDelaySetInterval(func, interval) {
       func();
       return setInterval(func, interval);
@@ -24,10 +21,8 @@ var app = new Vue({
   delimiters: ["[[", "]]"],
   methods: {
     async updateMessages() {
-        resp = await axios.get('api/get_messages?last_id=' + last_id);
-        console.log(resp.data)
+        resp = await axios.get('api/get_messages?last_id=' + last_id)
         this.messages = resp.data
-        console.log(this.messages)
     },
   },
   data(){
@@ -37,7 +32,7 @@ var app = new Vue({
   mounted() {
         this.updateMessages();
         this.interval = setInterval(() => {
-            this.updateMessages();
+            this.updateMessages()
         },10000);
   },
   });
