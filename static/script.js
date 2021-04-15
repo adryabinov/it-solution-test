@@ -6,7 +6,7 @@ function noDelaySetInterval(func, interval) {
       return setInterval(func, interval);
       };
 
-Vue.component('msg', {
+Vue.component('message', {
   delimiters: ["[[", "]]"],
   props: ['id','text', 'read'],
   methods: {

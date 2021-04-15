@@ -14,13 +14,13 @@
 <body>
     <div id="messagesFromSpace" class="container">
     <div v-if="messages.length > 0">
-        <msg v-for="message in messages"
+        <message v-for="message in messages"
              v-bind:id="message.id"
              v-bind:text="message.text"
              v-bind:read="message.read"
              class="card">
 
-        </msg>
+        </message>
     </div>
     <div v-else class="container"><h2 class="title centred">EMPTY</h2></div>
     </div>
