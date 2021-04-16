@@ -1,7 +1,4 @@
-function noDelaySetInterval(func, interval) {
-      func();
-      return setInterval(func, interval);
-      };
+message_empty = 'Нет непрочитанных сообщений'
 
 Vue.component('message', {
   delimiters: ["[[", "]]"],
@@ -19,20 +16,30 @@ Vue.component('message', {
 var app = new Vue({
   el: '#messagesFromSpace',
   delimiters: ["[[", "]]"],
+
   methods: {
     async updateMessages() {
-        resp = await axios.get('api/get_messages?last_id=' + last_id)
+        resp = await axios.get('api/get_messages?last_id=' + this.last_id)
         this.messages = resp.data
     },
   },
-  data(){
+
+  data() {
         return {
-            messages: []}
+            messages: [],
+            message_empty: message_empty}
   },
+
+  computed: {
+    last_id: function () {
+        return this.messages.length > 0 ? this.messages['0'].id : 0
+    }
+    },
+
   mounted() {
-        this.updateMessages();
+        this.updateMessages()
         this.interval = setInterval(() => {
             this.updateMessages()
-        },10000);
+        },10000)
   },
-  });
+  })
