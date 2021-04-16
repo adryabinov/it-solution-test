@@ -14,7 +14,8 @@
 <body>
     <div id="messagesFromSpace" class="container">
     <div v-if="messages.length > 0">
-        <message v-for="message in messages":key="message.id"
+        <message v-for="(message, index) in messages":key="index"
+             v-bind:index="index"
              v-bind:id="message.id"
              v-bind:text="message.text"
              v-bind:read="message.read"

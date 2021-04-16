@@ -2,15 +2,22 @@ message_empty = 'Нет непрочитанных сообщений'
 
 Vue.component('message', {
   delimiters: ["[[", "]]"],
-  props: ['id','text', 'read'],
+  props: ['index','id','text', 'read'],
+
   methods: {
     markRead: async function (id) {
         await axios.get('api/mark_read?id=' + id)
-        this.read = true
+        this.$parent.messages[String(this.index)].read = true
         return true
     },
   },
-  template: '<div class="card-body"><h3 class="card-title">[[ id ]]</h3><h2>[[ read ]]</h2><p class="card-text">[[ text ]]</p><button v-on:click="markRead([[ id ]])" type="button" class="btn btn-primary">mark read</button></div>'
+
+  computed: {
+    status: function () {
+        return this.read ? 'прочитано' : 'не прочитано'
+        }
+    },
+  template: '<div class="card-body"><h3 class="card-title">[[ id ]]</h3><h2>[[ status ]]</h2><p class="card-text">[[ text ]]</p><button v-on:click="markRead([[ id ]])" type="button" class="btn btn-primary">mark read</button></div>'
 })
 
 var app = new Vue({

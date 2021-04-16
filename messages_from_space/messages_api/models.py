@@ -8,3 +8,6 @@ class MessageFromSpace(models.Model):
 
     def __str__(self):
         return f'{self.date}  {self.text}'
+
+    def mk_unread(self):
+        self.read = False
