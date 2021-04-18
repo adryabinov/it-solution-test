@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
+
+
 class MessageFromSpace(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
@@ -8,6 +11,3 @@ class MessageFromSpace(models.Model):
 
     def __str__(self):
         return f'{self.date}  {self.text}'
-
-    def mk_unread(self):
-        self.read = False
