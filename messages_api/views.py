@@ -1,16 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
-
+from django.views.generic import TemplateView
 from messages_api.models import MessageFromSpace
 
 # Create your views here.
 
 
-def index(request):
-    return render(request, 'index.html', context={
-        'who': 'World',
-    })
+class IndexView(TemplateView):
+    template_name = "index.html"
 
 
 def unread_json(request):
