@@ -65,7 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'messages_from_space/templates',
+            'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -129,7 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "../static"),
+    os.path.join(BASE_DIR, "static"),
 )
 
 STATIC_URL = "/static/"
