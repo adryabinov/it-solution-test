@@ -5,7 +5,7 @@ from messages_api.models import MessageFromSpace
 
 @admin.action(description='Mark selected messages unread')
 def make_unread(modeladmin, request, queryset):
-    queryset.update(read=False)
+    queryset.update(is_read=False)
 
 
 class MessageFromSpaceAdmin(admin.ModelAdmin):

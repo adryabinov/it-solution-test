@@ -12,20 +12,15 @@ class IndexView(TemplateView):
 
 
 def unread_json(request):
-    messages = []
-    for message in MessageFromSpace.objects.filter(read=False).order_by('-pk'):
-        messages.append({
-            'id': message.pk,
-            'date': message.date,
-            'text': message.text,
-            'read': message.read})
+    messages = [MessageFromSpace.serialize(message) for message
+                in MessageFromSpace.objects.filter(is_read=False).order_by('-pk')]
     return JsonResponse(messages, safe=False)
 
 
 def mk_read(request):
     read_id = request.GET.get('id')
     message = MessageFromSpace.objects.get(pk=read_id)
-    message.read = True
+    message.is_read = True
     message.save()
 
-    return HttpResponse('True')
+    return JsonResponse(MessageFromSpace.serialize(message), safe=False)
