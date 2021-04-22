@@ -8,4 +8,8 @@
 SECRET_KEYS = [
     # start with your Django secret key like this:
     "SECRET_KEY",
+    "DB_HOST",
+    "DB_NAME",
+    "DB_USER",
+    "DB_PWD",
 ]

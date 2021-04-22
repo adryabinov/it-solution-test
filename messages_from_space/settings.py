@@ -29,8 +29,6 @@ SECRET_KEY = secrets.SECRET_KEY
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '94.228.113.235',
-    '127.0.0.1'
 ]
 
 
@@ -87,8 +85,12 @@ WSGI_APPLICATION = 'messages_from_space.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': secrets.DB_NAME,
+        'USER': secrets.DB_USER,
+        'PASSWORD': secrets.DB_PWD,
+        'HOST': secrets.DB_HOST,
+        'PORT': '',
     }
 }
 
